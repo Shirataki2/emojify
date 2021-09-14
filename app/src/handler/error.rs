@@ -1,5 +1,4 @@
-use crate::{ErrorContext, error::AppError};
-
+use crate::{error::AppError, ErrorContext};
 
 pub async fn on_error(error: AppError, ctx: ErrorContext<'_>) {
     error!("Command Error:{}", error);

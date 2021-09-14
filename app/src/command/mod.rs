@@ -1,7 +1,7 @@
 mod emojify;
 pub use emojify::*;
 
-use crate::{Context, PrefixContext, error::AppError};
+use crate::{error::AppError, Context, PrefixContext};
 
 /// Add two numbers
 #[poise::command(prefix_command, slash_command)]
