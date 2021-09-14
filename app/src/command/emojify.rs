@@ -107,9 +107,10 @@ pub async fn simple(
         &background_color,
     )
     .await?;
-    let msg = poise::send_reply(ctx, |m| m.content(text.replace("_", ""))).await?;
+    let msg = poise::send_reply(ctx, |m| m.content("作成中...")).await?;
     if let Ok(mut msg) = msg.message().await {
         msg.edit(ctx.discord(), |m| {
+            m.content("作成完了!");
             m.attachment(serenity::AttachmentType::Bytes {
                 data: Cow::Owned(buffer),
                 filename: "emoji.png".to_string(),
@@ -143,13 +144,17 @@ pub async fn custom(
         &background_color,
     )
     .await?;
-    poise::send_reply(ctx, |m| {
-        m.attachment(serenity::AttachmentType::Bytes {
-            data: Cow::Owned(buffer),
-            filename: "emoji.png".to_string(),
+    let msg = poise::send_reply(ctx, |m| m.content("作成中...")).await?;
+    if let Ok(mut msg) = msg.message().await {
+        msg.edit(ctx.discord(), |m| {
+            m.content("作成完了!");
+            m.attachment(serenity::AttachmentType::Bytes {
+                data: Cow::Owned(buffer),
+                filename: "emoji.png".to_string(),
+            })
         })
-    })
-    .await?;
+        .await?;
+    }
     Ok(())
 }
 

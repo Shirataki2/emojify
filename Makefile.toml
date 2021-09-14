@@ -1,6 +1,7 @@
 [env]
 API_HOST = "localhost"
 API_PORT = 4444
+RUST_LOG = "app=info"
 
 [tasks.run]
 script = '''

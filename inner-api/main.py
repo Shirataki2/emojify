@@ -12,7 +12,7 @@ from converter import InvalidColorException, parse_color
 class FontType(str, Enum):
     Mincho = "Mincho"
     Gothic = "Gothic"
-    Maru = "Maru"
+    MaruGothic = "MaruGothic"
     BlackMincho = "BlackMincho"
     BlackGothic = "BlackGothic"
 
@@ -21,7 +21,7 @@ class FontType(str, Enum):
             return "./resources/NotoSerifCJKjp-Bold.otf"
         elif self == FontType.Gothic:
             return "./resources/NotoSansCJKjp-Bold.otf"
-        elif self == FontType.Maru:
+        elif self == FontType.MaruGothic:
             return "./resources/rounded-mplus-1p-black.ttf"
         elif self == FontType.BlackMincho:
             return "./resources/NotoSerifCJKjp-Black.otf"
@@ -34,7 +34,7 @@ class FontType(str, Enum):
             return 36
         elif self == FontType.Gothic:
             return 36
-        elif self == FontType.Maru:
+        elif self == FontType.MaruGothic:
             return 28
         elif self == FontType.BlackMincho:
             return 36
