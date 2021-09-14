@@ -1,0 +1,27 @@
+[env]
+API_HOST = "localhost"
+API_PORT = 4444
+
+[tasks.run]
+script = '''
+cd app
+cargo run
+cd ..
+'''
+
+[tasks.serve-dev]
+script = '''
+cd inner-api
+uvicorn main:app --reload --host $API_HOST --port $API_PORT
+cd ..
+'''
+
+[tasks.start]
+script = '''
+cd app
+cargo run --release > logs &
+cd ..
+cd inner-api
+uvicorn main:app --host $API_HOST --port $API_PORT > logs &
+cd ..
+'''
