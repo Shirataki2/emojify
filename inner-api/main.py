@@ -2,9 +2,8 @@ import asyncio
 import io
 from typing import Optional
 from enum import Enum
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel
 
 from generator import TextImageGenerator
 from converter import InvalidColorException, parse_color
@@ -59,7 +58,7 @@ async def create_emoji(
         fg_color = parse_color(text_color or "#FF0000")
         bg_color = parse_color(background_color or "transparent")
     except InvalidColorException:
-        return {"message": "Invalid color"}, 400
+        raise HTTPException(status_code=400, detail="Invalid color")
     generator = TextImageGenerator(text, font.font_path(), size, fg_color, bg_color, font.offset())
     loop = asyncio.get_event_loop()
     img = await loop.run_in_executor(None, generator.render)

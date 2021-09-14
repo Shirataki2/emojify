@@ -91,6 +91,10 @@ pub async fn simple(
     #[description = "文字の色"] text_color: Option<poise::Wrapper<Color>>,
     #[description = "文字の背景色"] background_color: Option<poise::Wrapper<Color>>,
 ) -> Result<(), AppError> {
+    if text.len() > 60 {
+        poise::say_reply(ctx, "文字が長すぎます").await?;
+        return Ok(());
+    }
     let font = font.0;
     let text_color = text_color
         .map(|c| c.0.to_colorcode())
@@ -132,6 +136,10 @@ pub async fn custom(
     #[description = "文字の背景色 (#00000000 とすることで透過背景を使用します)"]
     background_color: Option<String>,
 ) -> Result<(), AppError> {
+    if text.len() > 60 {
+        poise::say_reply(ctx, "文字が長すぎます").await?;
+        return Ok(());
+    }
     let font = font.0;
     let text_color = text_color.unwrap_or_else(|| Color::Red.to_colorcode());
     let background_color = background_color.unwrap_or_else(|| Color::Transparent.to_colorcode());
@@ -166,7 +174,7 @@ async fn get_emoji_data(
     text_color: &str,
     background_color: &str,
 ) -> Result<Vec<u8>, AppError> {
-    let data = client
+    let resp = client
         .get(format!("{}/emoji", config.api.url.as_str()))
         .query(&[
             ("text", text),
@@ -175,8 +183,12 @@ async fn get_emoji_data(
             ("background_color", background_color),
         ])
         .send()
-        .await?
-        .bytes()
         .await?;
-    Ok(data.to_vec())
+
+    if resp.status().is_success() {
+        let data = resp.bytes().await?;
+        Ok(data.to_vec())
+    } else {
+        Err(AppError::InvalidColor)
+    }
 }

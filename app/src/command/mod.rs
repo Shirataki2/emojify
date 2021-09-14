@@ -3,7 +3,7 @@ pub use emojify::*;
 
 use crate::{error::AppError, Context, PrefixContext};
 
-/// Add two numbers
+/// このBotの招待URLを表示します
 #[poise::command(prefix_command, slash_command)]
 pub async fn invite(
     ctx: Context<'_>,
