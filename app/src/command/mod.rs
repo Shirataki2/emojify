@@ -5,12 +5,10 @@ use crate::{error::AppError, Context, PrefixContext};
 
 /// Add two numbers
 #[poise::command(prefix_command, slash_command)]
-pub async fn add(
+pub async fn invite(
     ctx: Context<'_>,
-    #[description = "1st operand"] a: f32,
-    #[description = "2nd operand"] b: f32,
 ) -> Result<(), AppError> {
-    poise::say_reply(ctx, format!("{} + {} = {}", a, b, a + b)).await?;
+    poise::say_reply(ctx, &ctx.data().config.application.invite_url).await?;
     Ok(())
 }
 

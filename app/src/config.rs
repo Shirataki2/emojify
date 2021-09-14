@@ -14,6 +14,7 @@ pub struct ApplicationConfig {
     pub application_id: serenity::ApplicationId,
     pub prefix: String,
     pub token: String,
+    pub invite_url: String,
     pub owners: HashSet<serenity::UserId>,
 }
 

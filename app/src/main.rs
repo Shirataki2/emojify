@@ -27,7 +27,7 @@ async fn main() -> Result<(), error::AppError> {
         ..Default::default()
     };
 
-    options.command(command::add(), |f| f.category("Miscs"));
+    options.command(command::invite(), |f| f.category("Miscs"));
     options.command(command::register(), |f| f.category("Miscs"));
     options.command(command::emojify(), |f| {
         f.category("General")
