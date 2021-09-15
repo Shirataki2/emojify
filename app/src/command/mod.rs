@@ -15,7 +15,7 @@ pub async fn invite(
 /// Register slash commands in this guild or globally
 ///
 /// Run with no arguments to register in guild, run with argument "global" to register globally.
-#[poise::command(prefix_command, hide_in_help)]
+#[poise::command(prefix_command, hide_in_help, owners_only)]
 pub async fn register(ctx: PrefixContext<'_>, #[flag] global: bool) -> Result<(), AppError> {
     poise::defaults::register_application_commands(ctx.into(), global).await?;
 
