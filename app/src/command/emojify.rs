@@ -61,14 +61,14 @@ impl Color {
         let code = match self {
             Color::White => "#FFFFFF",
             Color::Black => "#000000",
-            Color::Red => "#FF0000",
-            Color::Blue => "#0000FF",
-            Color::Green => "#00FF00",
-            Color::Yellow => "#FFFF00",
-            Color::Purple => "#FF00FF",
+            Color::Red => "#FD4028",
+            Color::Blue => "#3e44f7",
+            Color::Green => "#33f54b",
+            Color::Yellow => "#eaff33",
+            Color::Purple => "#fa33fa",
             Color::Gray => "#808080",
-            Color::Brown => "#A52A2A",
-            Color::Aqua => "#00FFFF",
+            Color::Brown => "#A54f4f",
+            Color::Aqua => "#44f3f3",
             Color::Transparent => "#00000000",
         };
         code.to_string()
