@@ -1,0 +1,9 @@
+[application]
+application_id = 0 # Bot application id
+prefix = "" # Prefix (for register application commands)
+token = "" # Bot token
+invite_url = "" # Bot invite link
+owners = [] # Owners' Discord User ID
+
+[api]
+url = "http://localhost:4444"
