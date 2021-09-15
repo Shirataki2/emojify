@@ -21,3 +21,22 @@ pub async fn register(ctx: PrefixContext<'_>, #[flag] global: bool) -> Result<()
 
     Ok(())
 }
+
+/// 使い方の解説を表示します
+#[poise::command(prefix_command, slash_command, ephemeral)]
+pub async fn help(
+    ctx: Context<'_>,
+) -> Result<(), AppError> {
+    let help_text = "入力した文字列から128x128の絵文字として使える画像を生成します．
+
+【使い方】
+
+`/emojify` と入力するとコマンドの候補が表示されます．
+
+2種類のコマンドがありますが色指定の方法が異なっています．
+`/emojify simple`では文字の色指定を選択肢から選びます．
+`/emojify custom`では文字の色指定をカラーコードで#FF0000のように指定します．
+";
+    poise::say_reply(ctx, help_text).await?;
+    Ok(())
+}

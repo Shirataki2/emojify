@@ -65,7 +65,7 @@ impl Color {
             Color::Blue => "#3e44f7",
             Color::Green => "#33f54b",
             Color::Yellow => "#eaff33",
-            Color::Purple => "#fa33fa",
+            Color::Purple => "#a31ce0",
             Color::Gray => "#808080",
             Color::Brown => "#A54f4f",
             Color::Aqua => "#44f3f3",
